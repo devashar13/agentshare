@@ -29,9 +29,11 @@ def scaffold_skills(
 ) -> dict[str, list[str]]:
     """Scaffold skills into platform dirs. Returns {platform: [skill_names]}."""
     if platforms is None:
-        platforms = detect_platforms()
+        platforms = [p for p in detect_platforms() if p in PLATFORM_SKILL_DIRS]
         if not platforms:
             platforms = list(PLATFORM_SKILL_DIRS.keys())
+    else:
+        platforms = [p for p in platforms if p in PLATFORM_SKILL_DIRS]
 
     # Determine which skills to scaffold
     if skill_names:

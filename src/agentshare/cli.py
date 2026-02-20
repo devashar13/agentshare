@@ -124,7 +124,7 @@ def init_skills(
     ] = Path("."),
     platform: Annotated[
         Optional[str],
-        typer.Option("--platform", help="Target platform (claude, cursor, windsurf)"),
+        typer.Option("--platform", help="Target platform (e.g. claude, cursor, windsurf)"),
     ] = None,
     all_platforms: Annotated[
         bool, typer.Option("--all-platforms", help="Scaffold for all platforms")
@@ -141,11 +141,13 @@ def init_skills(
 
     project_path = project_path.resolve()
 
+    from agentshare.config import PLATFORM_SKILL_DIRS
+
     platforms = None
     if platform:
         platforms = [platform]
     elif all_platforms:
-        platforms = ["claude", "cursor", "windsurf"]
+        platforms = list(PLATFORM_SKILL_DIRS.keys())
 
     results = scaffold_skills(
         project_path=project_path,
