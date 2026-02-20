@@ -1,0 +1,53 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "agentshare"
+version = "0.1.0"
+description = "Unifying layer for AI coding agents - share skills and context across Claude Code, Cursor, and Windsurf"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [
+    {name = "Devashar", email = "devashar13@gmail.com"},
+]
+keywords = ["ai", "agents", "mcp", "context-sharing", "claude", "cursor", "windsurf", "skills"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries",
+]
+dependencies = [
+    "typer[all]>=0.12.0",
+    "mcp>=1.0.0",
+    "pydantic>=2.0.0",
+    "rich>=13.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/devashar13/agentshare"
+Repository = "https://github.com/devashar13/agentshare"
+"Bug Tracker" = "https://github.com/devashar13/agentshare/issues"
+
+[project.scripts]
+agentshare = "agentshare.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/agentshare"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.24.0",
+]
